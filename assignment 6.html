@@ -1,0 +1,141 @@
+<html>
+    <head>
+<script>
+var inputCharacter = "";
+var InputText = "";
+var character = 0;
+var character1 = inputCharacter.substring(1);
+var inputValue = "";
+var characterCount = 0;
+var stringCharacter = 0;
+var inputString = "";
+var searchAmount = inputCharacter.substring();
+var stringValue = 0;
+var beforeString = "";
+var afterString = "";
+
+
+
+function setVariables() {
+character = inputCharacter.length;
+InputText = document.getElementById("input2").value;
+inputValue = document.getElementById("input1").value;
+inputString = document.getElementById("input3").value;
+stringValue = inputString.length;
+}
+
+function deleteInput(){
+    document.getElementById("input2").value="";
+    document.getElementById("input1").value="";
+}
+
+function enableButtons() {
+    document.getElementById("displayWord").innerHTML = "The Magic Word is " + inputCharacter;
+    if(InputText.length>0) {
+        document.getElementById("addBeginning").disabled = false;
+        document.getElementById("addEnd").disabled = false;
+    }
+    else {
+        document.getElementById("addBeginning").disabled = true;
+        document.getElementById("addEnd").disabled = true;
+    }
+    if (inputCharacter.length>=18) {
+        document.getElementById("addBeginning").disabled = true;
+        document.getElementById("addEnd").disabled = true;
+    }
+    if(inputCharacter.length>0) {
+        document.getElementById("delBeginning").disabled = false;
+        document.getElementById("delEnd").disabled = false;
+    }
+    else {
+        document.getElementById("delBeginning").disabled = true;
+        document.getElementById("delEnd").disabled = true;
+    }
+    document.getElementById("input2").focus();
+}
+function addToBeginning() {
+    setVariables();
+    inputCharacter = InputText + inputCharacter;
+    document.getElementById("input2").value = "";
+    setVariables();
+    enableButtons();
+}
+function addtoEnd() {
+    setVariables();
+    document.getElementById("input2").value="";
+   inputCharacter = inputCharacter + InputText;
+    setVariables();
+    enableButtons();
+}
+function deleteFromBeginning() {
+setVariables();
+inputCharacter = inputCharacter.substring(1);
+setVariables();
+enableButtons();
+}
+function deleteFromEnd() {
+setVariables();
+inputCharacter = inputCharacter.substring(0, inputCharacter.length - 1);
+setVariables();
+enableButtons();
+}
+function characterAmount(){
+    document.getElementById("input1").focus();
+characterCount = 0;
+for(let i=0; i<3; i++) {                      
+character1 = character1 + character1;
+}
+for(let i=0; i<inputCharacter.length; i++) {
+if(inputValue == inputCharacter.substring(i,i+1)){
+characterCount++;
+}
+}
+document.getElementById("wordSize").innerHTML = "The letter " + inputValue + " appears " + characterCount + " time(s)";
+}
+function searchString(){
+    document.getElementById("input3").focus();
+stringCharacter = 0;
+for(let i=0; i<3; i++) {                      
+stringValue = inputString.length;
+beforeString = inputCharacter.substring(i,i-inputString.length);
+afterString = inputCharacter.substring(i,i+inputString.length);
+}
+for(let i=0; i<inputCharacter.length; i++) {
+if(inputString == inputCharacter.substring(i,i+stringValue)){
+stringCharacter++;     
+}
+}
+document.getElementById("wordCount").innerHTML = "The string " + inputString + " appears " + stringCharacter + " time(s) before " + beforeString + " after " +afterString;
+
+
+
+}
+
+</script>
+</head>
+    <body>
+<p id="displayWord">The Characters Will Appear Hear</p>
+<input onkeyup="setVariables(); enableButtons();" onkeydown="deleteInput();" onmouseleave="setVariables(); enableButtons();" id="input2"><br>
+<button id="addBeginning" onclick="addToBeginning();">
+    Add To Beginning
+</button>
+<button id="addEnd" onclick="addtoEnd();">
+    Add To End
+</button>
+<br>
+<button id="delBeginning" onclick="deleteFromBeginning();">
+    Delete From Beginning
+</button>
+<button id="delEnd" onclick="deleteFromEnd();">
+    Delete From End
+</button>
+<br>
+<input maxlength="1" onkeyup="setVariables();" onkeydown="deleteInput();" size="5" id="input1"><button onclick="characterAmount();" id="characterCount">charactercount</button>
+<br>
+<p id="wordSize"></p>
+<br>
+<input onkeyup="setVariables();" onkeydown="deleteInput();" size="5" id="input3"><button onclick="searchString();" id="searchCount">SearchCount</button>
+<br>
+<p id="wordCount"></p>
+</body>
+</html>
